@@ -1,0 +1,54 @@
+apply plugin: 'com.android.library'
+
+android {
+    compileSdkVersion Integer.parseInt(COMPILE_SDK_VERSION)
+    buildToolsVersion BUILDTOOLS_VERSION
+
+    defaultConfig {
+        //提供分包支持
+        multiDexEnabled true
+
+        minSdkVersion Integer.parseInt(MIN_SDK_VERSION)
+        targetSdkVersion Integer.parseInt(TARGET_SDK_VERSION)
+        versionCode Integer.parseInt(VERSION_CODE)
+        versionName VERSION_NAME
+
+        //每个moudle的资源文件加前缀
+        resourcePrefix "base_"
+
+        //用于ARouter跳转找到路径(每一个目标Module都需要加此配置)
+        javaCompileOptions {
+            annotationProcessorOptions {
+                includeCompileClasspath = true
+                arguments = [ moduleName : project.getName() ]
+            }
+        }
+    }
+
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+        }
+    }
+
+    compileOptions {
+        sourceCompatibility = '1.8'
+        targetCompatibility = '1.8'
+    }
+
+    //制定整个项目的jar、aar目录均为sdk下的lib目录
+    repositories {
+        flatDir {
+            dirs 'libs','../sdk/libs'
+        }
+    }
+
+}
+
+dependencies {
+    implementation fileTree(dir: 'libs', include: ['*.jar'])
+    //annotationProcessor这一行在每个组件里面都必须添加
+    annotationProcessor "com.alibaba:arouter-compiler:${AROUTER_COMPLIER_VERSION}"
+    implementation project(':sdk')
+}

@@ -1,0 +1,199 @@
+apply plugin: 'com.android.library'
+
+android {
+
+    compileSdkVersion Integer.parseInt(COMPILE_SDK_VERSION)
+    buildToolsVersion BUILDTOOLS_VERSION
+
+    defaultConfig {
+        //提供分包支持
+        multiDexEnabled true
+
+        minSdkVersion Integer.parseInt(MIN_SDK_VERSION)
+        targetSdkVersion Integer.parseInt(TARGET_SDK_VERSION)
+        versionCode Integer.parseInt(VERSION_CODE)
+        versionName VERSION_NAME
+
+        //给 Module 内的资源名增加前缀, 避免资源名冲突
+        resourcePrefix "sdk_"
+
+        //用于ARouter跳转找到路径(每一个目标Module都需要加此配置)
+        javaCompileOptions {
+            annotationProcessorOptions {
+                includeCompileClasspath = true
+                arguments = [ moduleName : project.getName() ]
+            }
+        }
+    }
+
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+        }
+    }
+
+    //制定整个项目的jar、aar目录均为sdk下的lib目录
+    repositories {
+        flatDir {
+            dirs 'libs'
+        }
+    }
+}
+
+dependencies {
+    implementation fileTree(dir: 'libs', include: ['*.jar'])
+
+    //约束布局
+    api 'androidx.constraintlayout:constraintlayout:1.1.3'
+    api("androidx.appcompat:appcompat:${SUPPORT_LIB_VERSION}") {}
+    api("com.google.android.material:material:${MATERIAL_VERSION}") {}
+    //Android相机拍照方向旋转的解决方案：ExifInterface可以拿到照片的各种信息
+    api("androidx.exifinterface:exifinterface:${SUPPORT_LIB_VERSION}") {}
+    //Recyclerview
+    api "androidx.recyclerview:recyclerview:${RECYCLE_VIEW_VERSION}"
+    //BaseRecyclerViewAdapterHelper适配器添加
+    api("com.github.CymChad:BaseRecyclerViewAdapterHelper:${BASE_RECYCLE_HELPER_VERSION}") {
+        exclude group: 'com.android.support'
+        exclude module: 'appcompat-v7'
+        exclude module: 'design'
+    }
+    //smartrefreshLayout添加
+    api  'com.scwang.smart:refresh-layout-kernel:2.0.1'
+    //viewpager
+    api "androidx.viewpager:viewpager:${VIEWPAGER_VERSION}"
+    //viewpager2
+    api "androidx.viewpager2:viewpager2:${VIEWPAGER_VERSION_TWO}"
+
+    api 'androidx.core:core:1.0.0'
+    api 'androidx.annotation:annotation:1.0.0'
+
+    //annotationProcessor这一行在每个组件里面都必须添加
+    annotationProcessor "com.alibaba:arouter-compiler:${AROUTER_COMPLIER_VERSION}"
+    //只需添加一次即可
+    api("com.alibaba:arouter-api:${AROUTER_API_VERSION}") {
+        exclude group: 'com.android.support'
+        exclude module: 'appcompat-v7'
+        exclude module: 'design'
+    }
+    //Glide配置
+    annotationProcessor "com.github.bumptech.glide:compiler:${GLIDE_PROCESSOR_VERSION}"
+    //图片变换器
+    api 'jp.wasabeef:glide-transformations:4.0.0'
+    api("com.github.bumptech.glide:glide:${GLIDE_VERSION}") {
+        exclude group: 'com.android.support'
+        exclude module: 'appcompat-v7'
+        exclude module: 'design'
+    }
+    //EventBus配置
+    api("org.greenrobot:eventbus:${EVENT_BUS_VERSION}") {
+        exclude group: 'com.android.support'
+        exclude module: 'appcompat-v7'
+        exclude module: 'design'
+    }
+    //banner添加
+    api('com.youth.banner:banner:2.0.10') {
+        exclude group: 'com.android.support'
+        exclude module: 'appcompat-v7'
+        exclude module: 'design'
+    }
+    //Gson
+    api("com.google.code.gson:gson:${GSON_VERSION}") {
+        exclude group: 'com.android.support'
+        exclude module: 'appcompat-v7'
+        exclude module: 'design'
+    }
+    //butterknife添加
+    api("com.jakewharton:butterknife:${BUTTERKNIFE_VERSION}") {
+        exclude group: 'com.android.support'
+        exclude module: 'appcompat-v7'
+        exclude module: 'design'
+    }
+   //retrofit添加
+    api("com.squareup.retrofit2:retrofit:${RETROFIT_VERSION}") {
+        exclude group: 'com.android.support'
+        exclude module: 'appcompat-v7'
+        exclude module: 'design'
+    }
+    //RxJava提供了响应式编码规范
+    api("io.reactivex.rxjava2:rxjava:${RX_VERSION}") {
+        exclude group: 'com.android.support'
+        exclude module: 'appcompat-v7'
+        exclude module: 'design'
+    }
+    //RxAndroid是专供Android平台的RxJava（只是针对平台增加了少量类）
+    // 一般Android开发者口中的RxJava指的便是RxAndroid
+    api("io.reactivex.rxjava2:rxandroid:${RX_VERSION}") {
+        exclude group: 'com.android.support'
+        exclude module: 'appcompat-v7'
+        exclude module: 'design'
+    }
+    //Gson转换器
+    api("com.squareup.retrofit2:converter-gson:${RETROFIT_VERSION}") {
+        exclude group: 'com.android.support'
+        exclude module: 'appcompat-v7'
+        exclude module: 'design'
+    }
+    api("com.squareup.retrofit2:adapter-rxjava2:${RETROFIT_VERSION}") {
+        exclude group: 'com.android.support'
+        exclude module: 'appcompat-v7'
+        exclude module: 'design'
+    }
+
+    //使用autodispose解决RxJava内存泄漏
+    api 'com.uber.autodispose:autodispose-lifecycle:1.2.0'
+    api 'com.uber.autodispose:autodispose-android:1.2.0'
+    api 'com.uber.autodispose:autodispose-android-archcomponents:1.2.0'
+    api 'com.uber.autodispose:autodispose:1.2.0'
+
+    //permission添加
+    api 'com.permissionx.guolindev:permission-support:1.2.2'
+
+    //greendao添加
+    api("org.greenrobot:greendao:${GREENDAO_VERSION}") {
+        exclude group: 'com.android.support'
+        exclude module: 'appcompat-v7'
+        exclude module: 'design'
+    }
+    //FlowLayout添加
+    api('com.github.1002326270xc:LayoutManager-FlowLayout:v1.7') {
+        exclude group: 'com.android.support'
+        exclude module: 'appcompat-v7'
+        exclude module: 'design'
+    }
+    //PickerView
+    api('com.contrarywind:Android-PickerView:4.1.8') {
+        exclude group: 'com.android.support'
+        exclude module: 'appcompat-v7'
+        exclude module: 'design'
+    }
+    //鲁班压缩图片
+    api("top.zibin:Luban:${LUBAN_VERSION}") {
+        exclude group: 'com.android.support'
+        exclude module: 'appcompat-v7'
+        exclude module: 'design'
+    }
+    //状态栏适配
+    api('com.gyf.immersionbar:immersionbar:2.3.3-beta15') {
+        exclude group: 'com.android.support'
+        exclude module: 'appcompat-v7'
+        exclude module: 'design'
+    }
+    //分包
+    api 'com.android.support:multidex:1.0.1'
+
+    //AndroidAutoSize屏幕适配方案
+    api 'me.jessyan:autosize:1.1.2'
+
+    // 如果使用的是java 8要显示声明如下的
+    def lifecycle_version = "1.1.1"
+    api "android.arch.lifecycle:common-java8:$lifecycle_version"
+
+    //气泡
+    api 'q.rorbin:badgeview:1.1.3'
+    //tab的下标指示器
+    api 'com.github.hackware1993:MagicIndicator:1.5.0'
+    //卡片布局
+    api "androidx.cardview:cardview:1.0.0"
+
+}

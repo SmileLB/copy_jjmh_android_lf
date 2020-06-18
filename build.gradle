@@ -1,0 +1,50 @@
+// Top-level build file where you can add configuration options common to all sub-projects/modules.
+//buildscript里的是gradle脚本执行所需依赖，分别是对应的maven库和插件。
+buildscript {
+    repositories {
+        flatDir{
+            dirs 'libs','../sdk/libs'
+        }
+        mavenCentral()
+        google()
+        jcenter()
+        maven { url "https://jitpack.io" }
+        maven { url "https://dl.bintray.com/thelasterstar/maven/" }
+        maven { url 'https://dl.bintray.com/umsdk/release' }
+        maven { url "http://nexus2.tingyun.com/nexus/content/repositories/snapshots/" }
+        maven { url 'http://developer.huawei.com/repo/'}
+        maven { url "https://oss.sonatype.org/content/groups/public/" }
+        
+    }
+    dependencies {
+        classpath 'com.android.tools.build:gradle:3.3.1'
+        classpath 'com.jakewharton:butterknife-gradle-plugin:10.1.0'
+        //引入apt编译插件(EventBus使用)
+        classpath 'com.neenbedankt.gradle.plugins:android-apt:1.8'
+        //数据库配置
+        classpath 'org.greenrobot:greendao-gradle-plugin:3.2.2'
+
+    }
+}
+//allprojects里是项目本身需要的依赖，比如要添加maven中的的common-util库，那么应该将
+// maven {url ‘https://raw.githubusercontent.com/Geroff/MavenTest/master’}写在这里，
+// 而不是buildscript中，不然找不到
+allprojects {
+    repositories {
+        flatDir{
+            dirs 'libs'
+        }
+        mavenCentral()
+        jcenter()
+        maven { url "https://jitpack.io" }
+        maven { url "https://dl.bintray.com/thelasterstar/maven/" }
+        maven { url 'https://dl.bintray.com/umsdk/release' }
+        maven {url 'http://developer.huawei.com/repo/'}
+        google()
+        maven { url "https://oss.sonatype.org/content/groups/public/" }
+    }
+}
+
+task clean(type: Delete) {
+    delete rootProject.buildDir
+}

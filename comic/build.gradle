@@ -1,0 +1,81 @@
+apply plugin: 'com.android.library'
+//要是在库中使用必须添加butterknife
+apply plugin: 'com.jakewharton.butterknife'
+//greendao配置
+apply plugin: 'org.greenrobot.greendao'
+
+greendao {
+    schemaVersion 1
+    daoPackage 'com.lifan.comics.greendao.gen'
+    targetGenDir 'src/main/java'
+}
+
+android {
+    compileSdkVersion Integer.parseInt(COMPILE_SDK_VERSION)
+    buildToolsVersion BUILDTOOLS_VERSION
+
+
+    defaultConfig {
+        multiDexEnabled false
+        minSdkVersion Integer.parseInt(MIN_SDK_VERSION)
+        targetSdkVersion Integer.parseInt(TARGET_SDK_VERSION)
+        versionCode Integer.parseInt(VERSION_CODE)
+        versionName VERSION_NAME
+
+        //每个moudle的资源文件加前缀
+        resourcePrefix "comic_"
+
+        //butterknife配置
+        compileOptions {
+            sourceCompatibility JavaVersion.VERSION_1_8
+            targetCompatibility JavaVersion.VERSION_1_8
+        }
+
+        //用于ARouter跳转找到路径(每一个目标Module都需要加此配置)、(高版本EventBus也需要在这配置)
+        javaCompileOptions {
+            annotationProcessorOptions {
+                includeCompileClasspath = true
+                arguments = [moduleName: project.getName(), eventBusIndex: 'com.lifan.comics.MyEventBusIndex']
+            }
+        }
+    }
+
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+        }
+    }
+
+    compileOptions {
+        sourceCompatibility = '1.8'//指定编译.java文件的jdk版本
+        targetCompatibility = '1.8'
+    }
+
+    //制定整个项目的jar、aar目录均为sdk下的lib目录
+    repositories {
+        flatDir {
+            dirs 'libs','../sdk/libs'
+        }
+    }
+
+}
+
+dependencies {
+    implementation fileTree(dir: 'libs', include: ['*.jar'])
+    //annotationProcessor这一行在每个组件里面都必须添加
+    annotationProcessor "com.alibaba:arouter-compiler:${AROUTER_COMPLIER_VERSION}"
+    //要是在库中使用必须添加butterknife
+    annotationProcessor "com.jakewharton:butterknife-compiler:${BUTTERKNIFE_VERSION}"
+    //eventbus注解器
+    annotationProcessor "org.greenrobot:eventbus-annotation-processor:${EVENT_BUS_VERSION}"
+    implementation project(':sdk')
+    implementation project(':base')
+
+    //leakcanary检测内存泄漏
+    debugImplementation 'com.squareup.leakcanary:leakcanary-android:1.6.3'
+    releaseImplementation 'com.squareup.leakcanary:leakcanary-android-no-op:1.6.3'
+    debugImplementation 'com.squareup.leakcanary:leakcanary-support-fragment:1.6.3'
+
+    implementation project(':subsampling')
+}

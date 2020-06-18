@@ -1,0 +1,2 @@
+include ':app', ':sdk', ':base', ':comic', ':subsampling'
+rootProject.name='copy_jjmh_android_lf'
