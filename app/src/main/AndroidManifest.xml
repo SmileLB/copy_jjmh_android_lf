@@ -44,7 +44,6 @@
             android:value="2.4" />
 
 
-
         <!--利用占位符取build.gradle渠道定义的值-->
         <meta-data
             android:name="is_debug"
@@ -75,8 +74,9 @@
 
         <activity
             android:name=".activity.MainActivity"
-            android:screenOrientation="portrait"
-            android:theme="@style/AppStartActivityTheme">
+            android:configChanges="keyboardHidden|orientation|screenSize"
+            android:launchMode="singleTask"
+            android:screenOrientation="portrait">
         </activity>
 
 

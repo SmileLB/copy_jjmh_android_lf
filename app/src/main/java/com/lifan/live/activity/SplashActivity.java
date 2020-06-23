@@ -2,14 +2,18 @@ package com.lifan.live.activity;
 
 import android.os.Bundle;
 
-import com.lifan.base.mvp.BasePresenter;
+import com.alibaba.android.arouter.launcher.ARouter;
+import com.gyf.barlibrary.BarHide;
+import com.gyf.barlibrary.ImmersionBar;
+import com.lifan.base.router.RouterMap;
 import com.lifan.base.ui.BaseActivity;
 import com.lifan.live.R;
+import com.lifan.live.present.SplashContract;
+import com.lifan.live.present.SplashPresenter;
 
-import org.greenrobot.eventbus.Subscribe;
-import org.greenrobot.eventbus.ThreadMode;
+import butterknife.OnClick;
 
-public class SplashActivity extends BaseActivity {
+public class SplashActivity extends BaseActivity<SplashPresenter> implements SplashContract.ISplashView {
     @Override
     protected void initData(Bundle savedInstanceState) {
 
@@ -17,22 +21,32 @@ public class SplashActivity extends BaseActivity {
 
     @Override
     protected int getLayoutId() {
-        return R.layout.activity_main;
+        return R.layout.activity_splash;
     }
 
     @Override
-    public BasePresenter setPresenter() {
-        return null;
-    }
-
-
-    @Subscribe(threadMode = ThreadMode.MAIN)
-    public void dealWxLogin(String wxLoginEvent) {
-
+    public SplashPresenter setPresenter() {
+        return new SplashPresenter();
     }
 
     @Override
-    public boolean useEventBus() {
+    protected void initImmersionBar() {
+        ImmersionBar.with(this)
+                .fitsSystemWindows(false)
+                .keyboardEnable(false)
+                .statusBarDarkFont(true, 0.2f)
+                .hideBar(BarHide.FLAG_HIDE_STATUS_BAR)
+                .init();
+    }
+
+    @Override
+    protected boolean isImmersionBarEnabled() {
         return true;
+    }
+
+    @OnClick(R.id.splash_container)
+    public void onViewClicked() {
+        ARouter.getInstance().build(RouterMap.COMIC_MAIN_ACTIVITY).navigation(this);
+        finish();
     }
 }
