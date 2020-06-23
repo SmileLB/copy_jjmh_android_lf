@@ -66,6 +66,19 @@ public abstract class LazyFragment<P extends BasePresenter> extends Fragment imp
         return view == null ? super.onCreateView(inflater, container, savedInstanceState) : view;
     }
 
+    @Override
+    public void onActivityCreated(@Nullable Bundle savedInstanceState) {
+        super.onActivityCreated(savedInstanceState);
+        this.savedInstanceState=savedInstanceState;
+    }
+
+    @Override
+    public void onStart() {
+        super.onStart();
+        if (useEventBus() && !EventBus.getDefault().isRegistered(this))
+            EventBus.getDefault().register(this);
+    }
+
     public void bindUI(View rootView) {
         unbinder = ButterKnife.bind(this, rootView);
     }
@@ -96,19 +109,6 @@ public abstract class LazyFragment<P extends BasePresenter> extends Fragment imp
         }
         super.onDestroyView();
         isFirstLoad = true;
-    }
-
-    @Override
-    public void onActivityCreated(@Nullable Bundle savedInstanceState) {
-        super.onActivityCreated(savedInstanceState);
-        this.savedInstanceState=savedInstanceState;
-    }
-
-    @Override
-    public void onStart() {
-        super.onStart();
-        if (useEventBus() && !EventBus.getDefault().isRegistered(this))
-            EventBus.getDefault().register(this);
     }
 
     @Override
