@@ -36,6 +36,9 @@ public abstract class BaseActivity <P extends BasePresenter> extends AppCompatAc
     private boolean isStart;//标记当前activity已经走过一次onStart
     private NetStatusReceiver netReceiver;
 
+    private final int MIN_DELAY_TIME = 1000;  // 两次点击间隔不能少于1000ms
+    private long lastClickTime;
+
     /**
      * activity可能由各种情景引发导致activity被回收 此时直接{@link #getIntent()}方法获取参数全部为null
      * 这里为了方便处理 把{@link #onSaveInstanceState}现场保护传的参数全部放入{@link #getIntent()}
@@ -174,7 +177,7 @@ public abstract class BaseActivity <P extends BasePresenter> extends AppCompatAc
     @Override
     public void showProgress() {
         if (dialog == null){
-            dialog = new CustomProgressDialog(this);
+            dialog = new CustomProgressDialog(this,false);
         }
         if (!dialog.isShowing()){
             dialog.show();
@@ -187,7 +190,7 @@ public abstract class BaseActivity <P extends BasePresenter> extends AppCompatAc
      * @param onDismissListener
      */
     public void showProgress(DialogInterface.OnDismissListener onDismissListener) {
-        if (dialog == null) dialog = new CustomProgressDialog(this);
+        if (dialog == null) dialog = new CustomProgressDialog(this,false);
         if (!dialog.isShowing()) dialog.show();
         dialog.setOnDismissListener(onDismissListener);
     }
@@ -248,5 +251,15 @@ public abstract class BaseActivity <P extends BasePresenter> extends AppCompatAc
         if (getIntent() != null && getIntent().getExtras() != null) {
             outState.putAll(getIntent().getExtras());
         }
+    }
+
+    public boolean isFastClick() {
+        boolean flag = true;
+        long currentClickTime = System.currentTimeMillis();
+        if ((currentClickTime - lastClickTime) >= MIN_DELAY_TIME) {
+            flag = false;
+        }
+        lastClickTime = currentClickTime;
+        return flag;
     }
 }

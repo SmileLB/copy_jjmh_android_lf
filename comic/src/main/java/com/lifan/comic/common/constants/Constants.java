@@ -4,6 +4,7 @@ import android.text.TextUtils;
 
 
 import com.lifan.base.BaseApplication;
+import com.lifan.base.log.LogUtil;
 import com.lifan.base.utils.ResourceUtil;
 import com.lifan.base.utils.SharedPref;
 import com.lifan.comic.R;

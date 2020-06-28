@@ -1,3 +1,7 @@
 <resources>
-    <string name="app_name">comic</string>
+    <string name="comic_tab_recommend">推荐</string>
+    <string name="comic_tab_find_book">分类</string>
+    <string name="comic_tab_search_book">发现</string>
+    <string name="comic_tab_bookshelf">书架</string>
+    <string name="comic_tab_mine">我的</string>
 </resources>

@@ -6,6 +6,8 @@
         <item name="colorPrimary">@color/colorPrimary</item>
         <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
         <item name="colorAccent">@color/colorAccent</item>
+        <!--BottomNavigationView涟漪颜色-->
+        <item name="colorControlHighlight">@color/base_color_423F51B5</item>
     </style>
 
     <style name="AppStartActivityTheme" parent="AppTheme">

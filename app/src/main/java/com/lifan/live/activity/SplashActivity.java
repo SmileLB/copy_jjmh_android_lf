@@ -46,6 +46,9 @@ public class SplashActivity extends BaseActivity<SplashPresenter> implements Spl
 
     @OnClick(R.id.splash_container)
     public void onViewClicked() {
+        if (isFastClick()) {
+            return;
+        }
         ARouter.getInstance().build(RouterMap.COMIC_MAIN_ACTIVITY).navigation(this);
         finish();
     }

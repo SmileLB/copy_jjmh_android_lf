@@ -112,7 +112,7 @@ public abstract class BaseFragment<P extends BasePresenter> extends Fragment imp
             if (getActivity() == null) {
                 return;
             }
-            dialog = new CustomProgressDialog(getActivity());
+            dialog = new CustomProgressDialog(getActivity(),false);
         }
         if (!dialog.isShowing()) dialog.show();
     }

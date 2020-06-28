@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <!--没有选中的样式-->
+    <style name="comic_bottom_normal_text">
+        <item name="android:textColor">@color/base_333333</item>
+        <item name="android:textSize">12sp</item>
+    </style>
+    <!--选中的样式-->
+    <style name="comic_bottom_selected_text">
+        <item name="android:textColor">@color/comic_a8a8a8</item>
+        <item name="android:textSize">12sp</item>
+    </style>
+
+</resources>

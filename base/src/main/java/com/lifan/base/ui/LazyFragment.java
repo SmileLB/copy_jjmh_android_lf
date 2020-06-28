@@ -11,6 +11,7 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 
+import com.lifan.base.dialog.CustomProgressDialog;
 import com.lifan.base.mvp.BasePresenter;
 import com.lifan.base.mvp.IView;
 import com.lifan.base.utils.toast.ToastUtil;
@@ -126,6 +127,17 @@ public abstract class LazyFragment<P extends BasePresenter> extends Fragment imp
     }
 
     @Override
+    public void showProgress() {
+        if (dialog == null) {
+            if (getActivity() == null) {
+                return;
+            }
+            dialog = new CustomProgressDialog(getActivity(),false);
+        }
+        if (!dialog.isShowing()) dialog.show();
+    }
+
+    @Override
     public void hideProgress() {
         if (dialog != null && dialog.isShowing()) dialog.dismiss();
     }
@@ -158,7 +170,5 @@ public abstract class LazyFragment<P extends BasePresenter> extends Fragment imp
     /**
      * 初始化数据
      */
-    protected void initData(Bundle savedInstanceState) {
-
-    }
+    protected abstract void initData(Bundle savedInstanceState);
 }

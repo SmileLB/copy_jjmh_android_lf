@@ -3,115 +3,39 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    tools:context=".activity.MainActivity">
+    android:layout_height="match_parent">
 
-    <androidx.core.widget.NestedScrollView
-        android:layout_width="0dp"
-        android:layout_height="0dp"
+
+    <FrameLayout
+        android:id="@+id/fl_container"
+        android:layout_width="@dimen/dp_0"
+        android:layout_height="@dimen/dp_0"
+        android:visibility="gone"
+        app:layout_constraintBottom_toTopOf="@+id/bv_home_navigation"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+
+    <androidx.viewpager.widget.ViewPager
+        android:id="@+id/vp_home_pager"
+        android:layout_width="@dimen/dp_0"
+        android:layout_height="@dimen/dp_0"
+        app:layout_constraintBottom_toTopOf="@+id/bv_home_navigation"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <com.google.android.material.bottomnavigation.BottomNavigationView
+        android:id="@+id/bv_home_navigation"
+        android:layout_width="0dp"
+        android:layout_height="@dimen/dp_50"
+        android:background="@color/comic_ffffff"
+        app:itemTextColor="@drawable/navigation_menu_item_color"
+        app:labelVisibilityMode="labeled"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintTop_toTopOf="parent" >
-
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:orientation="vertical">
-
-
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="100dp"
-                android:text="123"
-                android:gravity="center"
-                android:layout_centerInParent="true"
-                android:background="#55FF0000"/>
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="100dp"
-                android:text="123"
-                android:gravity="center"
-                android:layout_centerInParent="true"
-                android:background="#55FF0000"/>
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="100dp"
-                android:text="123"
-                android:gravity="center"
-                android:layout_centerInParent="true"
-                android:background="#55FF0000"/>
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="100dp"
-                android:text="123"
-                android:gravity="center"
-                android:layout_centerInParent="true"
-                android:background="#55FF0000"/>
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="100dp"
-                android:text="123"
-                android:gravity="center"
-                android:layout_centerInParent="true"
-                android:background="#55FF0000"/>
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="100dp"
-                android:text="123"
-                android:gravity="center"
-                android:layout_centerInParent="true"
-                android:background="#55FF0000"/>
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="100dp"
-                android:text="123"
-                android:gravity="center"
-                android:layout_centerInParent="true"
-                android:background="#55FF0000"/>
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="100dp"
-                android:text="123"
-                android:gravity="center"
-                android:layout_centerInParent="true"
-                android:background="#55FF0000"/>
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="100dp"
-                android:text="123"
-                android:gravity="center"
-                android:layout_centerInParent="true"
-                android:background="#55FF0000"/>
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="100dp"
-                android:text="123"
-                android:gravity="center"
-                android:layout_centerInParent="true"
-                android:background="#55FF0000"/>
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="100dp"
-                android:text="123"
-                android:gravity="center"
-                android:layout_centerInParent="true"
-                android:background="#55FF0000"/>
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="100dp"
-                android:text="123"
-                android:gravity="center"
-                android:layout_centerInParent="true"
-                android:background="#55FF0000"/>
-
-        </LinearLayout>
-
-
-
-    </androidx.core.widget.NestedScrollView>
-
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

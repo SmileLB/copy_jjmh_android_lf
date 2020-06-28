@@ -11,7 +11,7 @@ import com.lifan.base.R;
 
 public class CustomProgressDialog extends Dialog{
 
-    public CustomProgressDialog(@NonNull Context context) {
+    public CustomProgressDialog(@NonNull Context context,boolean isOutside) {
         super(context, R.style.base_CustomDialog);
         setContentView(R.layout.base_progress_dialog);
         WindowManager.LayoutParams params = getWindow().getAttributes();
@@ -20,7 +20,7 @@ public class CustomProgressDialog extends Dialog{
         params.dimAmount =0f;
         getWindow().setAttributes(params);
 //            progressDialog.setCancelable(false);
-        setCanceledOnTouchOutside(false);
+        setCanceledOnTouchOutside(isOutside);
     }
 
 }
