@@ -224,7 +224,6 @@ public abstract class BaseActivity <P extends BasePresenter> extends AppCompatAc
 
     @Override
     public void finish() {
-
         super.finish();
         hideSoftKeyBoard();
     }
