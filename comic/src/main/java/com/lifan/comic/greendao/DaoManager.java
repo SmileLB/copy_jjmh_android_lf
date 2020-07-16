@@ -5,8 +5,8 @@ import android.content.Context;
 
 import com.lifan.base.BaseApplication;
 import com.lifan.comic.common.constants.Constants;
-import com.lifan.comics.greendao.gen.DaoMaster;
-import com.lifan.comics.greendao.gen.DaoSession;
+import com.lifan.comic.greendao.gen.DaoMaster;
+import com.lifan.comic.greendao.gen.DaoSession;
 
 import org.greenrobot.greendao.query.QueryBuilder;
 

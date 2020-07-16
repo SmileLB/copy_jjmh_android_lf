@@ -6,7 +6,7 @@ apply plugin: 'org.greenrobot.greendao'
 
 greendao {
     schemaVersion 1
-    daoPackage 'com.lifan.comics.greendao.gen'
+    daoPackage 'com.lifan.comic.greendao.gen'
     targetGenDir 'src/main/java'
 }
 

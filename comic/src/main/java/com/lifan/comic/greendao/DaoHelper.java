@@ -6,8 +6,8 @@ import com.lifan.base.BaseApplication;
 import com.lifan.base.log.LogUtil;
 import com.lifan.base.utils.SharedPref;
 import com.lifan.comic.common.constants.Constants;
+import com.lifan.comic.greendao.gen.UserInfoDao;
 import com.lifan.comic.util.DateHelper;
-import com.lifan.comics.greendao.gen.UserInfoDao;
 
 import java.lang.reflect.ParameterizedType;
 import java.util.ArrayList;

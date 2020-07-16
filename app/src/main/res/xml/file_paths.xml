@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<paths>
+    <external-path
+        name="external_path"
+        path="images/" />
+    <root-path
+        name="camera_photos"
+        path="." />
+
+    <external-files-path name="external_files_path" path="Download" />
+    <external-path name="tt_external_root" path="." />
+    <external-path name="tt_external_download" path="Download" />
+    <external-files-path name="tt_external_files_download" path="Download" />
+    <files-path name="tt_internal_file_download" path="Download" />
+    <cache-path name="tt_internal_cache_download" path="Download" />
+
+    <!--    有米-->
+    <!--    有米sdk会将apk优先下载在sd卡中，如果sd卡不能使用，则会使用应用私有缓存目录context.getCache()-->
+    <!--    因此需要开发者配置下面两个路径方便有米sdk在下载完apk之后启动apk的安装页面-->
+    <cache-path
+        name="apk1"
+        path="." />
+    <external-path
+        name="apk2"
+        path="." />
+
+    <files-path
+        name="IFly_AD_Download_Path"
+        path="IFlyAdDownload" />
+</paths>
