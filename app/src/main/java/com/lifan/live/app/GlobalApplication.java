@@ -50,6 +50,7 @@ public class GlobalApplication extends BaseApplication {
         }
     }
 
+
     //因为低版本的手机系统并没有通知渠道这个功能，不做系统版本检查的话会在低版本手机上造成崩溃。
     private void initNotificationChannel() {
         if (Build.VERSION.SDK_INT >= 26) {
