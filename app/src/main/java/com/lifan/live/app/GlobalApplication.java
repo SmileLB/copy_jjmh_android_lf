@@ -54,9 +54,9 @@ public class GlobalApplication extends BaseApplication {
     private void initNotificationChannel() {
         if (Build.VERSION.SDK_INT >= 26) {
             NotificationManager manager = (NotificationManager) this.getSystemService(Context.NOTIFICATION_SERVICE);
-            NotificationChannel channel1 = new NotificationChannel("update", "漫画更新", NotificationManager.IMPORTANCE_HIGH);
-            NotificationChannel channel2 = new NotificationChannel("info", "消息通知", NotificationManager.IMPORTANCE_HIGH);
-            NotificationChannel channel3 = new NotificationChannel("user", "用户提醒", NotificationManager.IMPORTANCE_HIGH);
+            NotificationChannel channel1 = new NotificationChannel("update", "更新", NotificationManager.IMPORTANCE_HIGH);
+            NotificationChannel channel2 = new NotificationChannel("info", "通知", NotificationManager.IMPORTANCE_HIGH);
+            NotificationChannel channel3 = new NotificationChannel("user", "提醒", NotificationManager.IMPORTANCE_HIGH);
 
             channel1.setShowBadge(true);
             channel2.setShowBadge(true);
