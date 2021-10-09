@@ -142,7 +142,7 @@ dependencies {
         exclude module: 'design'
     }
 
-    //使用autodispose解决RxJava内存泄漏
+    //AndroidAutoSize屏幕适配方案
     api 'com.uber.autodispose:autodispose-lifecycle:1.2.0'
     api 'com.uber.autodispose:autodispose-android:1.2.0'
     api 'com.uber.autodispose:autodispose-android-archcomponents:1.2.0'
