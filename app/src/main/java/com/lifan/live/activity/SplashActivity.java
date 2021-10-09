@@ -19,6 +19,7 @@ public class SplashActivity extends BaseActivity<SplashPresenter> implements Spl
 
     }
 
+
     @Override
     protected int getLayoutId() {
         return R.layout.activity_splash;
