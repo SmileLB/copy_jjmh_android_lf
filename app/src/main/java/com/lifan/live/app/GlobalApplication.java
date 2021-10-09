@@ -68,7 +68,6 @@ public class GlobalApplication extends BaseApplication {
         }
     }
 
-
     private void initRxJavaException() {
         //处理Rxjava全局捕获异常，防止下游终止订阅之后，上游有未处理的异常导致崩溃
         if (!Constants.DEBUG) {//如果是调试模式就不开启，这样方便排查BUG
