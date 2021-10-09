@@ -12,7 +12,7 @@ import org.greenrobot.greendao.query.QueryBuilder;
 
 public class DaoManager {
     private static volatile DaoManager manager;
-    private static DaoMaster.DevOpenHelper helper;
+    private static MyOpenHelper helper;
     private static DaoSession daoSession;
     private Context mContext;
 
@@ -36,7 +36,7 @@ public class DaoManager {
     //判断是否存在数据库，没有就创建
     public DaoMaster getDaoMaster() {
         if (daoMaster == null) {
-            helper = new DaoMaster.DevOpenHelper(mContext, Constants.DB_NAME, null);
+            helper = new MyOpenHelper(mContext, Constants.DB_NAME, null);
             daoMaster = new DaoMaster(helper.getWritableDb());
         }
         return daoMaster;
