@@ -121,10 +121,10 @@ android {
         debug {
             minifyEnabled false
             debuggable true
-            manifestPlaceholders = [value_channel_id: "mzmh-default-397264083445985280",
+            manifestPlaceholders = [value_channel_id: "1",
                                     app_icon: "@mipmap/ic_launcher",
                                     app_icon_round: "@mipmap/ic_launcher_round",
-                                    app_name:"狸番漫画",
+                                    app_name:"无敌项目",
                                     value_isDebug   : true]
             signingConfig signingConfigs.release
         }
@@ -134,10 +134,10 @@ android {
     productFlavors {
 
         "APP_qihu360" {
-            manifestPlaceholders = [value_channel_id: "mzmh-default-397263456494006272",
+            manifestPlaceholders = [value_channel_id: "1",
                                     app_icon: "@mipmap/ic_launcher",
                                     app_icon_round: "@mipmap/ic_launcher_round",
-                                    app_name:"狸番漫画",
+                                    app_name:"无敌项目",
                                     value_isDebug   : false]
         }
 
